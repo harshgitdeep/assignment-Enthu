@@ -19,7 +19,7 @@ function App() {
   // FETCH ALL CALLS
   const fetchCalls = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/calls");
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/calls`);
 
       setCalls(response.data);
     } catch (err) {
@@ -40,7 +40,7 @@ function App() {
 
       setError(null);
 
-      await axios.post("http://localhost:3000/upload", formData);
+      await axios.post(`${import.meta.env.VITE_API_URL}/upload`, formData);
 
       // REFRESH CALLS
       fetchCalls();
