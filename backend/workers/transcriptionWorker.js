@@ -2,6 +2,8 @@ const { Worker } = require("bullmq");
 const IORedis = require("ioredis");
 const analyzeCall = require("../services/geminiService");
 
+const connection = require("../redis");
+
 require("dotenv").config({
   path: "../.env",
 });
@@ -13,11 +15,11 @@ const axios = require("axios");
 const Call = require("../models/Call");
 
 
-const connection = new IORedis({
-  host: "127.0.0.1",
-  port: 6379,
-  maxRetriesPerRequest: null,
-});
+// const connection = new IORedis({
+//   host: "127.0.0.1",
+//   port: 6379,
+//   maxRetriesPerRequest: null,
+// });
 
 const worker = new Worker(
   "transcriptionQueue",
